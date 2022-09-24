@@ -39,8 +39,8 @@ const authenticateUser = (email,password,done) => {
         authenticateUser
         )
     );
-    passport.serializeUser((user,done)=>done(null,user,id));
-    passport.deserializeUser((user,done)=>{
+    passport.serializeUser((user,done)=>done(null,user.id));
+    passport.deserializeUser((id,done)=>{
         pool.query(
             `SELECT * FROM users WHERE id = $1`, 
             [id], (err,results) => {
